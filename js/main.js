@@ -45,6 +45,6 @@ $(function () {
     $(window).resize(function() {
         $scope.centerElementOnPage($("#send_btn"), 65, "px");
         $scope.centerElementOnPage($("#textarea"), 300, "px");
-        $("#textarea").val($(window).innerWidth());
+        //$("#textarea").val($(window).innerWidth());
     });
 });
