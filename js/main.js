@@ -36,7 +36,7 @@ $(function () {
     $scope.centerElementOnPage($("#send_btn"), 65, "px");
     $scope.centerElementOnPage($("#textarea"), 300, "px");
     $("#textarea").keyup(function (e) {
-        if (e.keyCode == 13) {
+        if (e.keyCode === 13) {
             var text = $("#textarea").val();
             $scope.sendData(text);
             $("#textarea").val("");
