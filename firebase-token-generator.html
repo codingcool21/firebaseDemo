@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdn.firebase.com/v0/firebase-token-generator.js"></script>
+    <script>
+        $(function () {
+
+            $("#generate").click(function () {
+                var secret = $("#secret").val();
+                var object = {
+                    uid: "",
+                    readData: true,
+                    writeData: true
+                };
+                object["uid"] = $("#id_input").val();
+                var tokengenerator = new FirebaseTokenGenerator($("#secret").val());
+                window.token = tokengenerator.createToken(object);
+                $("div > h4").text(window.token);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <label for="secret">Secret:</label>
+    <input type="text" id="secret" />
+    <label for="id_input">ID:</label>
+    <input type="text" id="id_input" />
+    <button id="generate">Generate</button>
+    <div>
+        <h4>&nbsp;</h4>
+    </div>
+</body>
+
+</html>

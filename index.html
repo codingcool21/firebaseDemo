@@ -8,19 +8,25 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.0.2/firebase.js"></script>
     <script src="js/bootbox.min.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
     <script src="js/main.js"></script>
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+    <div id="dialog-overlay" onclick="closeDialog()"></div>
+    <div id="ui-dialog">
+    </div>
     <div class="jumbrotron" id="jumbotron_background">
         <h1 id="text_display">&nbsp;</h1>
     </div>
-    <input type="text" id="textarea"/>
+    <input type="text" id="textarea" />
     <select id="type_select">
         <option value="message">Message</option>
         <option value="youtube">YouTube</option>
     </select>
     <button id="send_btn" class="btn btn-primary" onclick="$scope.sendData($('#textarea').val())">Send</button>
+    <div data-popup="true" style="display: none;"><label for="username_txtinp">Username: </label><input type="text" id="username_txtinp"/><label for="password_txtinp">Password: </label><input type="password" id="password_txtinp"><label for="key_txtinp">Key: </label><input type="password" id="key_txtinp"><button id="login_btn" class="btn btn-primary" onclick="javascript:$scope.authWithLogin()">Login!</button></div>
 </body>
+
 </html>
