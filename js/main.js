@@ -33,21 +33,24 @@ $(function () {
         }
     };
     $scope.groupParam = $scope.find_out_param_url("groupname");
+    if($scope.groupParam == false) {
+        $scope.groupParam = "message";
+    }
 
     bootbox.alert("Hi there!");
 
     // new variable that will link to Firebase database
-    $scope.remDatabase = new Firebase("https://updatemessage.firebaseio.com/");
+    $scope.remDatabase = new Firebase("https://updatemessage.firebaseio.com/clientdata/");
     // when somethings changed in the Firebase, instantly update the text display
     $scope.remDatabase.child($scope.groupParam).on("value", function (snapshot) {
-        $("#text_display").text(snapshot.val());
+        $("#text_display").text(snapshot.val().value);
     });
 
     // sendData function to store data in Firebase and update all clients
     $scope.sendData = function (text_message) {
         // local function to update and send changes
         var object = {};
-        object[$scope.groupParam] = text_message;
+        object[$scope.groupParam] = {"value":text_message, "type": $("#type_select").val()};
         $scope.remDatabase.update(object);
     }
 
@@ -65,16 +68,18 @@ $(function () {
     //$scope.centerElementOnPage($("#text_display"), 500, "px");
     $scope.centerElementOnPage($("#send_btn"), 65, "px");
     $scope.centerElementOnPage($("#textarea"), 300, "px");
+    $scope.centerElementOnPage($("#type_select"), 125, "px");
     $("#textarea").keyup(function (e) {
-        if (e.keyCode === 13) {
+        //if (e.keyCode === 13) {
             var text = $("#textarea").val();
             $scope.sendData(text);
-            $("#textarea").val("");
-        }
+            //$("#textarea").val("");
+        //}
     });
     $(window).resize(function () {
         $scope.centerElementOnPage($("#send_btn"), 65, "px");
         $scope.centerElementOnPage($("#textarea"), 300, "px");
+        $scope.centerElementOnPage($("#type_select"), 125, "px");
         //$("#textarea").val($(window).innerWidth());
     });
 });
