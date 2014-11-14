@@ -17,6 +17,10 @@
         <h1 id="text_display">&nbsp;</h1>
     </div>
     <input type="text" id="textarea"/>
+    <select id="type_select">
+        <option value="message">Message</option>
+        <option value="youtube">YouTube</option>
+    </select>
     <button id="send_btn" class="btn btn-primary" onclick="$scope.sendData($('#textarea').val())">Send</button>
 </body>
 </html>
