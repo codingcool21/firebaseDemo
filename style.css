@@ -23,3 +23,9 @@
     padding: 2px;
     margin-bottom: 25px;
 }
+#type_select {
+    display: block;
+    width: 125px;
+    height: 35px;
+    margin-bottom: 12px;
+}
