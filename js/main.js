@@ -101,8 +101,14 @@ $(function () {
 
     // when somethings changed in the Firebase, instantly update the text display
     $scope.remDatabase.child($scope.groupParam).on("value", function (snapshot) {
+        $("#text_display").html("&nbsp;");
         localStorage.setItem("auth", "true");
-        $("#text_display").text(snapshot.val().value);
+        switch(snapshot.val().type) {
+            case "message": $("#text_display").text(snapshot.val().value);
+                break;
+            case "youtube": $("#text_display").html("<iframe width='560' height='315' src='//www.youtube.com/embed/" + snapshot.val().value +"' frameborder='0' allowfullscreen></iframe>");
+        }
+        
     }, function (error) {
         //alert(error);
         $scope.dialogUI.create();
@@ -158,7 +164,7 @@ $(function () {
     });
     $(window).resize(function () {
         $("#ui-dialog").css("top", $(window).innerHeight() / 2 - ($("#ui-dialog").height() * 0.5) + "px").css("position", "absolute").css("left", $(window).innerWidth() / 2 - ($("#ui-dialog").width() * 0.5) + "px");
-        $scope.centerElementOnPage($("#send_btn"), $("#send_btn").height(), "px");
+        $scope.centerElementOnPage($("#send_btn"), $("#send_btn").width(), "px");
         $scope.centerElementOnPage($("#textarea"), 300, "px");
         $scope.centerElementOnPage($("#type_select"), 125, "px");
         //$("#textarea").val($(window).innerWidth());
