@@ -103,17 +103,22 @@ $(function () {
     $scope.remDatabase.child($scope.groupParam).on("value", function (snapshot) {
         localStorage.setItem("auth", "true");
         $("#text_display").text(snapshot.val().value);
+    }, function (error) {
+        //alert(error);
+        $scope.dialogUI.create();
+
     });
-    $scope.checkIfAuthIsLocal = function () {
-        if ($("[data-popup = 'true'") == "") {
-            return;
-        } else {
-            if (localStorage.getItem("auth") == "false") {
-                $("[data-popup = 'true']").css("display", "block").appendTo("#ui-dialog");
-                $scope.dialogUI.create()
-            }
-        }
-    }
+    //$scope.checkIfAuthIsLocal = function () {
+    // if ($("[data-popup = 'true'") == "") {
+    //    return;
+    // } else {
+    //     if (localStorage.getItem("auth") == "false") {
+    $("[data-popup = 'true']").css("display", "block").appendTo("#ui-dialog");
+    //          $scope.dialogUI.create()
+    //   }
+    //  }
+    //  }
+
     setTimeout(function () {
         $scope.checkIfAuthIsLocal()
     }, 1300);
@@ -145,11 +150,11 @@ $(function () {
     $scope.centerElementOnPage($("#textarea"), 300, "px");
     $scope.centerElementOnPage($("#type_select"), 125, "px");
     $("#textarea").keyup(function (e) {
-        //if (e.keyCode === 13) {
-        var text = $("#textarea").val();
-        $scope.sendData(text);
-        //$("#textarea").val("");
-        //}
+        if (e.keyCode === 13) {
+            var text = $("#textarea").val();
+            $scope.sendData(text);
+            $("#textarea").val("");
+        }
     });
     $(window).resize(function () {
         $("#ui-dialog").css("top", $(window).innerHeight() / 2 - ($("#ui-dialog").height() * 0.5) + "px").css("position", "absolute").css("left", $(window).innerWidth() / 2 - ($("#ui-dialog").width() * 0.5) + "px");
