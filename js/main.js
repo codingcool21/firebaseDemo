@@ -119,9 +119,9 @@ $(function () {
     //  }
     //  }
 
-    setTimeout(function () {
-        $scope.checkIfAuthIsLocal()
-    }, 1300);
+    //setTimeout(function () {
+    //    $scope.checkIfAuthIsLocal()
+  //  }, 1300);
 
     // sendData function to store data in Firebase and update all clients
     $scope.sendData = function (text_message) {
