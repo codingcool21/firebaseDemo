@@ -20,14 +20,19 @@ $scope.authWithLogin = function () {
     var key_input = $("#key_txtinp").val();
     var getHashFirebase = new Firebase("https://updatemessage.firebaseio.com/serverdata/auth-hash");
     var decryptedHash;
-    var getUserFirebase
-    getHashFirebase.authWithCustomToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJpYXQiOjE0MTU5ODM1NDEsImQiOnsidWlkIjoiYXV0aHNlbGVjdG9yIiwicmVhZEFuZFdyaXRlQXV0aCI6InRydWUifX0.-dbdqPona_sOT4f1W87K4ePH00wI_apt8cDivykoZ9M", function (error, authdata) {
-        if (!error) {
-            getHashFirebase.on('value', function (data) {
+    var getUserFirebase = new Firebase("https://updatemessage.firebaseio.com/serverdata/users/" + username_input + "/");
+getHashFirebase.authWithCustomToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJpYXQiOjE0MTkwNzIwNjYsImQiOnsidWlkIjoiYXV0aHNlbGVjdG9yIiwicmVhZEFuZFdyaXRlQXV0aCI6InRydWUiLCJyZWFkVXNlck5hbWUiOnRydWV9fQ.79xFOzUtMIwVoSymTtNeeGq_224VkJWNDZOT7dTF_Oc", function (error, authdata) {
+    alert(error);
+    alert(!error);
+    if (!error) {
+       // alert("got in to if");
+            getHashFirebase.on("value", function (data) {
+               // alert("got in to getHashFirebase");
                 decryptedHash = CryptoJS.AES.decrypt(data.val(), key_input);
                 decryptedHash = decryptedHash.toString(CryptoJS.enc.Utf8);
-                getUserFirebase = new Firebase("https://updatemessage.firebaseio.com/serverdata/users/" + username_input + "/");
+                //getUserFirebase = new Firebase("https://updatemessage.firebaseio.com/serverdata/users/" + username_input + "/");
                 getUserFirebase.authWithCustomToken(decryptedHash, function (error, authd) {
+                    //alert(error);
                     getUserFirebase.child("password").on("value", function (datas) {
                         var decryptedPassword = CryptoJS.AES.decrypt(datas.val(), key_input);
                         decryptedPassword = decryptedPassword.toString(CryptoJS.enc.Utf8);
@@ -101,8 +106,14 @@ $(function () {
 
     // when somethings changed in the Firebase, instantly update the text display
     $scope.remDatabase.child($scope.groupParam).on("value", function (snapshot) {
+        $("#text_display").html("&nbsp;");
         localStorage.setItem("auth", "true");
-        $("#text_display").text(snapshot.val().value);
+        switch(snapshot.val().type) {
+            case "message": $("#text_display").text(snapshot.val().value);
+                break;
+            case "youtube": $("#text_display").html("<iframe width='560' height='315' src='//www.youtube.com/embed/" + snapshot.val().value +"' frameborder='0' allowfullscreen></iframe>");
+        }
+        
     }, function (error) {
         //alert(error);
         $scope.dialogUI.create();
@@ -158,7 +169,7 @@ $(function () {
     });
     $(window).resize(function () {
         $("#ui-dialog").css("top", $(window).innerHeight() / 2 - ($("#ui-dialog").height() * 0.5) + "px").css("position", "absolute").css("left", $(window).innerWidth() / 2 - ($("#ui-dialog").width() * 0.5) + "px");
-        $scope.centerElementOnPage($("#send_btn"), $("#send_btn").height(), "px");
+        $scope.centerElementOnPage($("#send_btn"), $("#send_btn").width(), "px");
         $scope.centerElementOnPage($("#textarea"), 300, "px");
         $scope.centerElementOnPage($("#type_select"), 125, "px");
         //$("#textarea").val($(window).innerWidth());
