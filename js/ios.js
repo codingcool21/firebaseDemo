@@ -77,4 +77,7 @@ $(function () {
     }
     centerElements()
     $(window).resize(centerElements);
+    $scope.closeLoginDialog = function() {
+        $("[data-targetn='login']").hide();
+    }
 });
