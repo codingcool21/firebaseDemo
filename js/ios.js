@@ -66,8 +66,11 @@ $scope.centerElementOnPage = function (element, element_value, css_size_word, to
     $(element).css("position", "relative");
     $(element).css(top_or_left, windowmeasure / 2 - (element_value * 0.5) + css_word);
 }
+$scope.setButtonAction = function(button_object_string, function_to_call) {
+    $(button_object_string).click(function_to_call);
+}
 $(function () {
     $scope.centerElementOnPage("[data-targetn='login']", 550, "px", "left");
     $scope.centerElementOnPage("[data-targetn='login']", 300 + 185, "px", "top");
-    $("[data-targetn='login']").html("<h1>Yoyo</h1>").show();
+    $scope.setButtonAction($("#log_in_btn"), function() {$("[data-targetn='login']").show()});
 });
