@@ -7,13 +7,13 @@ $scope.authWithLogin = function () {
     var getHashFirebase = new Firebase("https://updatemessage.firebaseio.com/serverdata/auth-hash");
     var decryptedHash;
     var getUserFirebase = new Firebase("https://updatemessage.firebaseio.com/serverdata/users/" + username_input + "/");
-getHashFirebase.authWithCustomToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJpYXQiOjE0MTkwNzIwNjYsImQiOnsidWlkIjoiYXV0aHNlbGVjdG9yIiwicmVhZEFuZFdyaXRlQXV0aCI6InRydWUiLCJyZWFkVXNlck5hbWUiOnRydWV9fQ.79xFOzUtMIwVoSymTtNeeGq_224VkJWNDZOT7dTF_Oc", function (error, authdata) {
-    alert(error);
-    alert(!error);
-    if (!error) {
-       // alert("got in to if");
+    getHashFirebase.authWithCustomToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJpYXQiOjE0MTkwNzIwNjYsImQiOnsidWlkIjoiYXV0aHNlbGVjdG9yIiwicmVhZEFuZFdyaXRlQXV0aCI6InRydWUiLCJyZWFkVXNlck5hbWUiOnRydWV9fQ.79xFOzUtMIwVoSymTtNeeGq_224VkJWNDZOT7dTF_Oc", function (error, authdata) {
+        alert(error);
+        alert(!error);
+        if (!error) {
+            // alert("got in to if");
             getHashFirebase.on("value", function (data) {
-               // alert("got in to getHashFirebase");
+                // alert("got in to getHashFirebase");
                 decryptedHash = CryptoJS.AES.decrypt(data.val(), key_input);
                 decryptedHash = decryptedHash.toString(CryptoJS.enc.Utf8);
                 //getUserFirebase = new Firebase("https://updatemessage.firebaseio.com/serverdata/users/" + username_input + "/");
@@ -48,6 +48,26 @@ getHashFirebase.authWithCustomToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2Ij
     });
 
 }
-$(function() {
-
+$scope.centerElementOnPage = function (element, element_value, css_size_word, top_or_left) {
+    //alert(element + " " + element_value + " " + css_size_word + " "+ top_or_left);
+    var windowmeasure;
+    if (css_size_word == "em") {
+        var css_word = "em";
+    }
+    if (css_size_word == "px") {
+        var css_word = "px";
+    }
+    if (top_or_left == "top") {
+        windowmeasure = $(window).innerHeight()
+    } else {
+        windowmeasure = $(window).innerWidth()
+    }
+    //alert(windowmeasure);
+    $(element).css("position", "relative");
+    $(element).css(top_or_left, windowmeasure / 2 - (element_value * 0.5) + css_word);
+}
+$(function () {
+    $scope.centerElementOnPage("[data-targetn='login']", 550, "px", "left");
+    $scope.centerElementOnPage("[data-targetn='login']", 300 + 185, "px", "top");
+    $("[data-targetn='login']").html("<h1>Yoyo</h1>").show();
 });
