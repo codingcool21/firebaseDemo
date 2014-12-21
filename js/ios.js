@@ -66,18 +66,30 @@ $scope.centerElementOnPage = function (element, element_value, css_size_word, to
     $(element).css("position", "relative");
     $(element).css(top_or_left, windowmeasure / 2 - (element_value * 0.5) + css_word);
 }
-$scope.setButtonAction = function(button_object_string, function_to_call) {
+$scope.setButtonAction = function (button_object_string, function_to_call) {
+
     $(button_object_string).click(function_to_call);
 }
 $(function () {
-    function centerElements () {
-    $scope.centerElementOnPage("[data-targetn='login']", 550, "px", "left");
-    $scope.centerElementOnPage("[data-targetn='login']", 300 + 185, "px", "top");
-    $scope.setButtonAction($("#log_in_btn"), function() {$("[data-targetn='login']").show()});
+    function centerElements() {
+        $scope.centerElementOnPage("[data-targetn='login']", 550, "px", "left");
+        $scope.centerElementOnPage("[data-targetn='login']", 300 + 185, "px", "top");
+        $scope.dialogIsHiddenOrShown = 1;
+        $scope.setButtonAction($("#log_in_btn"), function () {
+            //alert(show_or_hide);
+            if ($scope.dialogIsHiddenOrShown == 0) {
+                $("[data-targetn='login']").hide()
+                $scope.dialogIsHiddenOrShown = 1;
+            } else {
+                $("[data-targetn='login']").show()
+                $scope.dialogIsHiddenOrShown = 0;
+            }
+        });
     }
-    centerElements()
+    centerElements();
     $(window).resize(centerElements);
-    $scope.closeLoginDialog = function() {
+    $scope.closeLoginDialog = function () {
         $("[data-targetn='login']").hide();
+        $scope.dialogIsHiddenOrShown = 1;
     }
 });
