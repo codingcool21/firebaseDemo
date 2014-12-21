@@ -10,13 +10,14 @@
 #topbar #statusBar p{
     display: inline;
     width: 500px;
-    height: 55px;
+    height: 500px;
     font-size: 40px;
     position: relative;
     top: 19%;
     text-align: center;
 }
-#statusBar:before {
+#statusBar {
+    height: 500px;
 }
 button {
     width: 65px;

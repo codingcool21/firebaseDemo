@@ -72,6 +72,7 @@ $scope.setButtonAction = function (button_object_string, function_to_call) {
 }
 $(function () {
     function centerElements() {
+        $scope.centerElementOnPage("#statusBar", $("#statusBar").width() + 150, "px", "left");
         $scope.centerElementOnPage("[data-targetn='login']", 550, "px", "left");
         $scope.centerElementOnPage("[data-targetn='login']", 300 + 185, "px", "top");
         $scope.dialogIsHiddenOrShown = 1;
