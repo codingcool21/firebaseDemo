@@ -70,7 +70,11 @@ $scope.setButtonAction = function(button_object_string, function_to_call) {
     $(button_object_string).click(function_to_call);
 }
 $(function () {
+    function centerElements () {
     $scope.centerElementOnPage("[data-targetn='login']", 550, "px", "left");
     $scope.centerElementOnPage("[data-targetn='login']", 300 + 185, "px", "top");
     $scope.setButtonAction($("#log_in_btn"), function() {$("[data-targetn='login']").show()});
+    }
+    centerElements()
+    $(window).resize(centerElements);
 });
