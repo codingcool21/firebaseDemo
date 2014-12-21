@@ -21,8 +21,66 @@ button {
     height: 300px;
     width: 550px;
     border: 5px solid black;
-    padding: 15px;
+    padding-left: 50px;
+    padding-top: 10px;
     margin: 6px;
     display: none;
     position: absolute;
+}
+label[for="username_txtinp"] {
+    color: #332323;
+    font-size: 24px;
+    display: inline;
+    position: relative;
+    left: 43px;
+    top: 26px
+}
+label[for="password_txtinp"] {
+    color: #332323;
+    font-size: 24px;
+    display: block;
+    position: relative;
+    left: 43px;
+    top: 48px;
+}
+label[for="key_txtinp"] {
+    color: #332323;
+    font-size: 24px;
+    display: block;
+    position: relative;
+    left: 43px;
+    top: 38px;
+}
+#username_txtinp {
+    width: 178px;
+    height: 35px;
+    position: relative;
+    left: 60px;
+    top: 23px;
+    font-size: 17px;
+}
+#password_txtinp {
+    width: 178px;
+    height: 35px;
+    display: inline;
+    position: relative;
+    left: 190px;
+    top: 8px;
+    font-size: 17px;
+}
+#key_txtinp {
+    width: 178px;
+    height: 35px;
+    display: inline;
+    position: relative;
+    left: 190px;
+    top: -2px;
+    font-size: 17px;
+}
+#login_btn {
+    position: relative;
+    top: 50px;
+    width: 100px;
+    height: 35px;
+    font-size: 16px;
 }

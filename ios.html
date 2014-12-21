@@ -23,7 +23,13 @@
         <button class="btn btn-primary" id="log_in_btn"><span class="glyphicon glyphicon-log-in glyspan"></span>Log In</button>
     </div>
     <div class="dialog" data-targetn="login">
-
+        <label for="username_txtinp">Username:</label>
+        <input type="text" id="username_txtinp" />
+        <label for="password_txtinp">Password:</label>
+        <input type="password" id="password_txtinp">
+        <label for="key_txtinp">Key:</label>
+        <input type="password" id="key_txtinp">
+        <button id="login_btn" class="btn btn-primary" onclick="javascript:$scope.authWithLogin()">Login!</button>
     </div>
 </body>
 
