@@ -1,10 +1,10 @@
 #topbar {
     padding-top: 8px;
-    height: 85px;
+    height: 13%;
     width: 100%;
     background-color: #0f6a63;
     position: absolute;
-    margin-bottom: 8px;
+    bottom: 87%;
 }
 button {
     width: 65px;
@@ -96,5 +96,5 @@ label[for="key_txtinp"] {
     z-index: 4000;
     opacity: 0.75;
     display: none;
-    bottom: 8px;
+    bottom: 0px;
 }
