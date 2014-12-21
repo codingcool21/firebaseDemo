@@ -80,9 +80,11 @@ $(function () {
             if ($scope.dialogIsHiddenOrShown == 0) {
                 $("[data-targetn='login']").hide()
                 $scope.dialogIsHiddenOrShown = 1;
+                $("#overlay").hide();
             } else {
                 $("[data-targetn='login']").show()
                 $scope.dialogIsHiddenOrShown = 0;
+                $("#overlay").show();
             }
         });
     }
@@ -91,5 +93,6 @@ $(function () {
     $scope.closeLoginDialog = function () {
         $("[data-targetn='login']").hide();
         $scope.dialogIsHiddenOrShown = 1;
+        $("#overlay").hide();
     }
 });

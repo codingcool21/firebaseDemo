@@ -3,6 +3,8 @@
     height: 85px;
     width: 100%;
     background-color: #0f6a63;
+    position: absolute;
+    margin-bottom: 8px;
 }
 button {
     width: 65px;
@@ -27,6 +29,7 @@ button {
     display: none;
     position: absolute;
     background-color: lightblue;
+    z-index: 5000;
 }
 label[for="username_txtinp"] {
     color: #332323;
@@ -84,4 +87,13 @@ label[for="key_txtinp"] {
     width: 100px;
     height: 35px;
     font-size: 16px;
+}
+#overlay {
+    background-color: gray;
+    width: 100%;
+    height: 99%;
+    position: fixed;
+    z-index: 4000;
+    opacity: 0.75;
+    display: none;
 }
