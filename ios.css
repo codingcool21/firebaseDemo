@@ -119,3 +119,9 @@ label[for="key_txtinp"] {
     /*bottom: 0px;*/
     top: -8px;
 }
+#textdisplay {
+    font-size: 85px;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+}
