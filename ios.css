@@ -17,14 +17,16 @@
     text-align: center;
 }
 #statusBar {
-    height: 500px;
+    height: 75px;
+    display: inline-block;
+    bottom: 5%;
 }
 button {
     width: 65px;
     height: 55px;
     padding: 7px;
     padding-top: 9px;
-    margin: 12px;
+    margin-left: 23px;
     background-color: transparent;
     font-size: 15px;
 }
