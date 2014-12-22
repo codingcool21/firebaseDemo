@@ -124,5 +124,7 @@ label[for="key_txtinp"] {
     text-align: center;
     display: block;
     width: 100%;
-    position: absolute;
+    position: relative;
+    align: center;
+    left: 10%;
 }

@@ -113,11 +113,18 @@ $(function() {
         $("#textdisplay").html("&nbsp;");
         localStorage.setItem("auth", "true");
         switch(snapshot.val().type) {
-            case "message": $("#textdisplay").text(snapshot.val().value);
+            case "message": $("#textdisplay").html(snapshot.val().value);
                 break;
-            case "youtube": $("#textdisplay").html("<iframe width='560' height='315' src='//www.youtube.com/embed/" + snapshot.val().value +"' frameborder='0' allowfullscreen></iframe>");
+            case "youtube": //$("#textdisplay").html("<iframe width='560' height='315' src='//www.youtube.com/embed/" + snapshot.val().value +"' frameborder='0' allowfullscreen></iframe>");
+            jwplayer("textdisplay").setup({
+        file: "http://www.youtube.com/watch?v=" + snapshot.val().value,
+        width: 800,
+        height: 420
+    });
+                $("#textdisplay").attr("position", "relative");
+                $scope.centerElementOnPage("#textdisplay", 800, "px", "left");
+                jwplayer("textdisplay").onReady(function() {$scope.centerElements();});
         }
-
     }, function (error) {
         //alert(error);
         //
@@ -143,6 +150,8 @@ $(function() {
 
     $scope.centerElements = function() {
         //alert("Page width is " + $(window).innerWidth() + " and height is " + $(window).innerHeight());
+
+        $scope.centerElementOnPage("#textdisplay", 800, "px", "left");
         $scope.centerElementOnPage("#statusBar", $("#statusBar").width() + 150, "px", "left");
         $scope.centerElementOnPage("[data-targetn='login']", 550, "px", "left");
         $scope.centerElementOnPage("[data-targetn='login']", 300 + 185, "px", "top");
