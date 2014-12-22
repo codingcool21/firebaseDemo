@@ -71,7 +71,7 @@ $scope.setButtonAction = function (button_object_string, function_to_call) {
     $(button_object_string).click(function_to_call);
 }
 $(function () {
-    function centerElements() {
+    $scope.centerElements = function() {
         $scope.centerElementOnPage("#statusBar", $("#statusBar").width() + 150, "px", "left");
         $scope.centerElementOnPage("[data-targetn='login']", 550, "px", "left");
         $scope.centerElementOnPage("[data-targetn='login']", 300 + 185, "px", "top");
@@ -89,8 +89,8 @@ $(function () {
             }
         });
     }
-    centerElements();
-    $(window).resize(centerElements);
+    $scope.centerElements();
+    $(window).resize($scope.centerElements);
     $scope.closeLoginDialog = function () {
         $("[data-targetn='login']").hide();
         $scope.dialogIsHiddenOrShown = 1;
