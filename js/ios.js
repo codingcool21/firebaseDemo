@@ -121,7 +121,7 @@ $(function () {
                 file: "http://www.youtube.com/watch?v=" + snapshot.val().value,
                 width: 800,
                 height: 420,
-                skin: "bekle.xml"
+                skin: "vapor.xml"
             });
             $("#textdisplay").attr("position", "relative");
             $scope.centerElementOnPage("#textdisplay", 800, "px", "left");
